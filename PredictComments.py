@@ -20,8 +20,12 @@ from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
 from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import MultinomialNB, GaussianNB
+from sklearn.naive_bayes import MultinomialNB
 
 
+input_text = ["The plantations were filled with apple trees",
+              "Deers and antelopes ate from the trees in the plantation ","Apple from the plantation trees was cheaper than others"]
 
+count_vect = CountVectorizer(stop_words='english', ngram_range=(1,2), min_df=0.7)
+count_vect.fit_transform(input_text)
+feature_list = count_vect.get_feature_names()

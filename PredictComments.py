@@ -23,9 +23,12 @@ from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 
 
-input_text = ["The plantations were filled with apple trees",
-              "Deers and antelopes ate from the trees in the plantation ","Apple from the plantation trees was cheaper than others"]
+train_data = pd.read_csv(r'E:\GitHub\Comments_Prediction\data\train.csv')
 
-count_vect = CountVectorizer(stop_words='english', ngram_range=(1,2), min_df=0.7)
-count_vect.fit_transform(input_text)
-feature_list = count_vect.get_feature_names()
+train_data['comment_text'] = train_data['comment_text'].map(lambda x: re.sub("\n", " ", x))
+train_data['comment_text'] = train_data['comment_text'].map(lambda x: re.sub("\"", "", x))
+# train_data['comment_text'] = train_data['comment_text'].map(lambda x: re.sub("\n", " ", x))
+
+
+# x = train_data['comment_text']
+# y = train_data.iloc[:, 2:8]
